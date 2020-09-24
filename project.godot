@@ -13,9 +13,15 @@ _global_script_classes=[ {
 "class": "Battle",
 "language": "GDScript",
 "path": "res://Battle.gd"
+}, {
+"base": "Node2D",
+"class": "Enemy",
+"language": "GDScript",
+"path": "res://Enemy.gd"
 } ]
 _global_script_class_icons={
-"Battle": ""
+"Battle": "",
+"Enemy": ""
 }
 
 [application]
@@ -32,6 +38,11 @@ window/size/test_width=360
 window/size/test_height=640
 window/stretch/mode="2d"
 window/stretch/aspect="keep"
+
+[gui]
+
+theme/custom="res://DefaultTheme.tres"
+theme/custom_font="res://DefaultFont.tres"
 
 [rendering]
 
