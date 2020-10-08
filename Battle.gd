@@ -2,12 +2,28 @@ extends Node
 class_name Battle
 
 onready var enemy = $Enemy
-onready var swordButton = $UI/SwordButton
+onready var playerStats = $PlayerStats
+onready var battleActionsButtons = $UI/BattleActionsButtons
 
-func _on_SwordButton_pressed():
+func _ready():
+	start_player_turn()
+
+func start_enemy_turn():
+	print("start enemy turn")
+	battleActionsButtons.hide()
 	if enemy != null:
-		enemy.hp -= 4
+		enemy.attack(playerStats)
+		yield(enemy, "end_turn")
+	start_player_turn()	
+
+func start_player_turn():
+	print("start player turn")
+	battleActionsButtons.show()
+	playerStats.ap = playerStats.MAX_AP
+	yield(playerStats, "end_turn")
+	start_enemy_turn()
 		
 func _on_Enemy_died():
-	swordButton.hide()
+	battleActionsButtons.hide()
 	enemy = null
+
